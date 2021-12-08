@@ -1,0 +1,6 @@
+package com.abhay.nord
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}
