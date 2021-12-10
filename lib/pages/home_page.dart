@@ -1,5 +1,6 @@
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:nord/controllers/compass_controller.dart';
 import 'package:provider/provider.dart';
 import 'package:sprung/sprung.dart';
@@ -61,13 +62,27 @@ class HomePage extends StatelessWidget {
               ),
               // Compass Display (Text)
               Center(
-                child: Text(
-                  '${_compassController.compassHeading?.round()}° ${_compassController.compassDirection}',
-                  style: const TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF4C4C4C),
-                  ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(height: 12),
+                    Text(
+                      '${_compassController.compassHeading?.round()}°',
+                      style: GoogleFonts.redHatDisplay(
+                        fontSize: 50,
+                        fontWeight: FontWeight.w900,
+                        color: const Color(0xFF4C4C4C),
+                      ),
+                    ),
+                    Text(
+                      '${_compassController.compassDirection}',
+                      style: GoogleFonts.redHatDisplay(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: const Color(0xCC4C4C4C),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               // Compass Display (Inner Shadow)
