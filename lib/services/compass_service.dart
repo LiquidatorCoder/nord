@@ -2,7 +2,7 @@ import 'package:flutter_compass/flutter_compass.dart';
 
 class CompassService {
   // method to get the current heading direction
-  String _getDirection(double heading) {
+  String getDirection(double heading) {
     if (heading >= 0 && heading < 22.5) {
       return 'N';
     } else if (heading >= 22.5 && heading < 67.5) {
@@ -34,6 +34,11 @@ class CompassService {
   // Getter to get current heading direction stream
   Stream<String>? get compassDirectionStream {
     return FlutterCompass.events
-        ?.map((event) => _getDirection(event.heading ?? 0));
+        ?.map((event) => getDirection(event.heading ?? 0));
+  }
+
+  // Getter to get current compass data stream
+  Stream<CompassEvent>? get compassStream {
+    return FlutterCompass.events;
   }
 }
