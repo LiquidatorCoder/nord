@@ -47,7 +47,7 @@ class HomePage extends StatelessWidget {
               AnimatedRotation(
                 duration: const Duration(milliseconds: 1000),
                 curve: Sprung.criticallyDamped,
-                turns: (_compassController.compassHeading ?? 0) / 360,
+                turns: -(_compassController.compassHeading ?? 0) / 360,
                 child: Image.asset(
                   'assets/images/ticks.png',
                   height: _screenHeight,
