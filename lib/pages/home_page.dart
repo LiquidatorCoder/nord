@@ -2,6 +2,7 @@ import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:nord/controllers/compass_controller.dart';
 import 'package:provider/provider.dart';
+import 'package:sprung/sprung.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -43,9 +44,9 @@ class HomePage extends StatelessWidget {
               ),
               // Compass Dial (Ticks)
               AnimatedRotation(
-                duration: const Duration(milliseconds: 400),
-                curve: Curves.bounceIn,
-                turns: (_compassController.compassHeading?.round() ?? 0) / 360,
+                duration: const Duration(milliseconds: 1000),
+                curve: Sprung.criticallyDamped,
+                turns: (_compassController.compassHeading ?? 0) / 360,
                 child: Image.asset(
                   'assets/images/ticks.png',
                   height: _screenHeight,
