@@ -1,3 +1,4 @@
+import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:nord/controllers/compass_controller.dart';
 import 'package:provider/provider.dart';
@@ -9,6 +10,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final CompassController _compassController =
         context.watch<CompassController>();
+    final double _screenWidth = MediaQuery.of(context).size.width;
+    final double _screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -22,10 +25,53 @@ class HomePage extends StatelessWidget {
           ),
         ),
         child: SizedBox.expand(
-          child: Center(
-            child: Text(
-              '${_compassController.compassHeading} ${_compassController.compassDirection}',
-            ),
+          child: Stack(
+            children: [
+              Image.asset(
+                'assets/images/bg.png',
+                height: _screenHeight,
+                width: _screenWidth,
+                opacity: const AlwaysStoppedAnimation(0.5),
+              ),
+              Center(
+                child: Image.asset(
+                  'assets/images/dial.png',
+                  height: _screenHeight,
+                  width: _screenWidth,
+                ),
+              ),
+              Center(
+                child: Image.asset(
+                  'assets/images/ticks.png',
+                  height: _screenHeight,
+                  width: _screenWidth,
+                ),
+              ),
+              Center(
+                child: Image.asset(
+                  'assets/images/pointer.png',
+                  height: _screenHeight,
+                  width: _screenWidth,
+                ),
+              ),
+              Center(
+                child: Text(
+                  '${_compassController.compassHeading?.round()}° ${_compassController.compassDirection}',
+                  style: const TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF4C4C4C),
+                  ),
+                ),
+              ),
+              Center(
+                child: Image.asset(
+                  'assets/images/shadow.png',
+                  height: _screenHeight,
+                  width: _screenWidth,
+                ),
+              ),
+            ],
           ),
         ),
       ),
