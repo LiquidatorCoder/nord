@@ -41,10 +41,16 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               Center(
-                child: Image.asset(
-                  'assets/images/ticks.png',
-                  height: _screenHeight,
-                  width: _screenWidth,
+                child: AnimatedRotation(
+                  duration: const Duration(milliseconds: 400),
+                  curve: Curves.bounceIn,
+                  turns:
+                      (_compassController.compassHeading?.round() ?? 0) / 360,
+                  child: Image.asset(
+                    'assets/images/ticks.png',
+                    height: _screenHeight,
+                    width: _screenWidth,
+                  ),
                 ),
               ),
               Center(
