@@ -26,40 +26,39 @@ class HomePage extends StatelessWidget {
         ),
         child: SizedBox.expand(
           child: Stack(
+            alignment: Alignment.center,
             children: [
+              // Background
               Image.asset(
                 'assets/images/bg.png',
                 height: _screenHeight,
                 width: _screenWidth,
                 opacity: const AlwaysStoppedAnimation(0.5),
               ),
-              Center(
+              // Compass Dial Background
+              Image.asset(
+                'assets/images/dial.png',
+                height: _screenHeight,
+                width: _screenWidth,
+              ),
+              // Compass Dial (Ticks)
+              AnimatedRotation(
+                duration: const Duration(milliseconds: 400),
+                curve: Curves.bounceIn,
+                turns: (_compassController.compassHeading?.round() ?? 0) / 360,
                 child: Image.asset(
-                  'assets/images/dial.png',
+                  'assets/images/ticks.png',
                   height: _screenHeight,
                   width: _screenWidth,
                 ),
               ),
-              Center(
-                child: AnimatedRotation(
-                  duration: const Duration(milliseconds: 400),
-                  curve: Curves.bounceIn,
-                  turns:
-                      (_compassController.compassHeading?.round() ?? 0) / 360,
-                  child: Image.asset(
-                    'assets/images/ticks.png',
-                    height: _screenHeight,
-                    width: _screenWidth,
-                  ),
-                ),
+              // Compass Dial (Pointer)
+              Image.asset(
+                'assets/images/pointer.png',
+                height: _screenHeight,
+                width: _screenWidth,
               ),
-              Center(
-                child: Image.asset(
-                  'assets/images/pointer.png',
-                  height: _screenHeight,
-                  width: _screenWidth,
-                ),
-              ),
+              // Compass Display (Text)
               Center(
                 child: Text(
                   '${_compassController.compassHeading?.round()}° ${_compassController.compassDirection}',
@@ -70,12 +69,11 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
-              Center(
-                child: Image.asset(
-                  'assets/images/shadow.png',
-                  height: _screenHeight,
-                  width: _screenWidth,
-                ),
+              // Compass Display (Inner Shadow)
+              Image.asset(
+                'assets/images/shadow.png',
+                height: _screenHeight,
+                width: _screenWidth,
               ),
             ],
           ),
